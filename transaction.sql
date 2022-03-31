@@ -16,16 +16,18 @@ BEGIN;
 UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
 UPDATE animals SET species = 'pokemon' WHERE species IS NULL;
 
-COMMIT;
-
 -- Verify 
 SELECT * FROM animals;
 
+COMMIT;
 
 -- Deleting all animals
 BEGIN;
 
 DELETE FROM animals;
+
+-- Verify 
+SELECT * FROM animals;
 
 -- roll back
 ROLLBACK;
@@ -49,6 +51,6 @@ UPDATE animals SET weight_kg = weight_kg * -1;
 ROLLBACK TO save_point1;
 
 -- Update all animals' weights that are negative to be their weight multiplied by -1.
-UPDATE animals SET weight_kg = weight_kg * -1;
+UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
 COMMIT;
 
