@@ -2,6 +2,11 @@
 
 > This repository implements the use of relational database to create the database for vet clinic.
 
+## Built With
+
+- SQL
+- PostgreSQL
+
 ## Getting Started
 
 This repository includes files with plain SQL that can be used to recreate a database:

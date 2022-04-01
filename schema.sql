@@ -41,3 +41,31 @@ ALTER TABLE animals ADD CONSTRAINT fk_species FOREIGN KEY(species_id) REFERENCES
 ALTER TABLE animals ADD COLUMN owner_id INTEGER;
 
 ALTER TABLE animals ADD CONSTRAINT fk_owners FOREIGN KEY(owner_id) REFERENCES owners(id) ON DELETE CASCADE;
+
+-- Create a table named vets
+CREATE TABLE vets ( 
+        id INTEGER GENERATED ALWAYS AS IDENTITY, 
+        name TEXT, 
+        age INTEGER, 
+        date_of_graduation DATE, 
+    PRIMARY KEY(id) 
+);
+
+-- Specialization join table 
+CREATE TABLE specialization ( 
+            id SERIAL PRIMARY KEY, 
+            vet_id INTEGER, 
+            species_id INTEGER, 
+        CONSTRAINT fk_vets FOREIGN KEY (vet_id) REFERENCES vets(id) ON DELETE CASCADE, 
+        CONSTRAINT fk_species FOREIGN KEY (species_id) REFERENCES species(id) ON DELETE CASCADE
+    );
+
+-- Visits join table 
+CREATE TABLE visits (
+            id SERIAL PRIMARY KEY, 
+            animal_id INTEGER, 
+            vet_id INTEGER, 
+            date_of_visit DATE, 
+        CONSTRAINT fk_animals FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE, 
+        CONSTRAINT fk_vets FOREIGN KEY (vet_id) REFERENCES vets(id) ON DELETE CASCADE
+    );
