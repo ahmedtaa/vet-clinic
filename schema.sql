@@ -5,10 +5,39 @@ CREATE TABLE animals (
     id              serial PRIMARY KEY,
     name            varchar(100),
     date_of_birth   date,
-    escape_attempts int,
+    escape_attempts INTEGER,
     neutered        boolean,
     weight_g        decimal
 );
 
 --Add a column species of type string to your animals table.
-ALTER TABLE animals ADD species VARCHAR(250);
+ALTER TABLE animals ADD species TEXT;
+
+-- Create a table named owners
+CREATE TABLE owners
+     (
+         id serial PRIMARY KEY,
+         full_name TEXT,
+         age INTEGER,
+     );
+
+-- Create a table named species
+CREATE TABLE species
+     (
+         id serial PRIMARY KEY,
+         name TEXT,
+    
+     );
+
+-- Remove column species
+ALTER TABLE animals DROP column species;
+
+-- dd column species_id
+ALTER TABLE animals ADD COLUMN species_id INTEGER;
+
+ALTER TABLE animals ADD CONSTRAINT fk_species FOREIGN KEY(species_id) REFERENCES species(id) ON DELETE CASCADE;
+
+-- Add column owner_id 
+ALTER TABLE animals ADD COLUMN owner_id INTEGER;
+
+ALTER TABLE animals ADD CONSTRAINT fk_owners FOREIGN KEY(owner_id) REFERENCES owners(id) ON DELETE CASCADE;
