@@ -63,9 +63,9 @@ CREATE TABLE specialization (
 -- Visits join table 
 CREATE TABLE visits (
             id SERIAL PRIMARY KEY, 
-            animals_id INTEGER, 
-            vets_id INTEGER, 
+            animal_id INTEGER, 
+            vet_id INTEGER, 
             date_of_visit DATE, 
-        CONSTRAINT fk_animals FOREIGN KEY (animals_id) REFERENCES animals(id) ON DELETE CASCADE, 
-        CONSTRAINT fk_vets FOREIGN KEY (vets_id) REFERENCES vets(id) ON DELETE CASCADE
+        CONSTRAINT fk_animals FOREIGN KEY (animal_id) REFERENCES animals(id) ON DELETE CASCADE, 
+        CONSTRAINT fk_vets FOREIGN KEY (vet_id) REFERENCES vets(id) ON DELETE CASCADE
     );
